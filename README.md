@@ -13,7 +13,7 @@ This is the participant template for the [Build with Codex: GTM Skillathon](http
 5. Replace every `TODO` and placeholder in the required submission files.
 6. Run the prompt in `CHECK_SUBMISSION.md`, resolve every hard failure, and commit the resulting `READINESS.md`.
 
-Codex discovers repository skills from `.agents/skills`, and explicit `$skill-name` invocation is supported in Codex. See the [official OpenAI skill documentation](https://learn.chatgpt.com/codex/build-skills).
+Codex discovers repository skills from `.agents/skills`, and explicit `$skill-name` invocation is supported in Codex. See the [official OpenAI skill documentation](https://learn.chatgpt.com/docs/build-skills).
 
 ## Required deliverables
 

@@ -62,10 +62,13 @@ Audit the following:
 - If the GitHub repository is private, verify that every organizer and jury handle announced for the event has accepted access. A pending invitation or unverifiable access is a hard failure.
 
 7. Fresh-Clone Smoke Test
+- Run this section only after the static audit has found a real entry skill, resolved required paths, and no placeholder hard failures. Otherwise record the smoke test as skipped because of those blockers; do not waste the demo window invoking an incomplete template.
 - Create a temporary clone or worktree of the exact audited candidate SHA in a new directory. Do not rely on untracked files from the participant workspace.
 - Follow only committed setup instructions.
-- Open that clean checkout in Codex and run the exact contents of demo/seed-prompt.md. Prefer a non-interactive Codex invocation when it is installed and authenticated; otherwise pause and have the participant run the prompt in a separate Codex session rooted at the clean checkout.
+- Use a separate Codex session rooted at that clean checkout and run the exact contents of demo/seed-prompt.md. You may use a nested non-interactive Codex invocation only when it already works safely in the current environment.
+- Do not copy, symlink, expose, or reconfigure authentication material to make nested Codex execution work. If nested startup is blocked, pause and ask the participant to run the prompt in a separate Codex session; a nested startup failure is an environment limitation, not evidence that the Skill Bundle failed.
 - Confirm Codex discovers and invokes the declared Demo Entry Point, reads the representative input, and visibly completes the meaningful capability promised by DEMO.md.
+- Stop a live attempt after 75 seconds. Record the timeout and use the Prior Output fallback; do not let readiness consume the presentation-preparation window.
 - Record environment, exact candidate SHA, invocation method, duration, produced artifact or observed result, and limitations.
 - Remove the temporary checkout after recording evidence. Never remove the participant workspace.
 - A test in another agent, a test from the dirty source workspace, a claimed prior run without inspectable evidence, or merely opening the Prior Output does not pass this check.
