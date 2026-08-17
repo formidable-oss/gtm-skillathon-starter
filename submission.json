@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "team": {
+    "name": "TODO",
+    "members": [
+      "TODO"
+    ]
+  },
+  "primary_track": "TODO",
+  "problem": "TODO",
+  "demo_agent": "codex",
+  "demo_entry_point": ".agents/skills/TODO/SKILL.md",
+  "skills": [
+    {
+      "path": ".agents/skills/TODO/SKILL.md",
+      "role": "TODO"
+    }
+  ],
+  "seed_prompt": "demo/seed-prompt.md",
+  "demo_input": "demo/input/TODO",
+  "prior_output": "demo/prior-output/TODO",
+  "eval_cases": "demo/evals/cases.md",
+  "eval_results": "demo/evals/results.md",
+  "setup": {
+    "instructions": "DEMO.md",
+    "requires_credentials": false,
+    "required_env_vars": []
+  },
+  "license": "MIT"
+}
