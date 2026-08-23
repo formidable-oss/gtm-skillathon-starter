@@ -1,1 +1,1 @@
-$your-skill-name Use the representative input at demo/input/TODO and produce the capability described in DEMO.md.
+$TODO-skill-name Use the input at demo/input/TODO-file and produce TODO the observable result named in DEMO.md.

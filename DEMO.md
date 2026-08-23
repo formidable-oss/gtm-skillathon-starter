@@ -1,52 +1,44 @@
-# Demo
+# Run sheet
 
-Replace every `TODO` before running readiness. Keep this page short enough to present without scrolling through unrelated detail.
+The organizer presents this repository for you, in 2 minutes, without having seen it before. Write every line for them. Replace every `TODO`. Keep it to one screen.
 
-## Problem — 25 seconds
+## Say this — 20 seconds
 
-**Primary track:** TODO
+**Team:** TODO
 
-**User and GTM problem:** TODO
+**Track:** TODO
 
-**Reusable job:** TODO
+**Who has the problem:** TODO one named user role at one kind of company
 
-## Contract — 20 seconds
+**The job this skill does:** TODO one sentence
 
-**Demo Entry Point:** `.agents/skills/TODO/SKILL.md`
+**Boundary — what it never does:** TODO
 
-**Seed Prompt:** [`demo/seed-prompt.md`](demo/seed-prompt.md)
+## Run this — 60 seconds
 
-**Representative input:** [`demo/input/TODO`](demo/input/)
+1. Codex is open at the repository root.
+2. Paste [`demo/seed-prompt.md`](demo/seed-prompt.md).
+3. Watch for: TODO the one visible thing that proves it worked (a file written, a table printed, a decision with sources)
+4. If nothing visible after 60 seconds, open the fallback: [`demo/output/TODO`](demo/output/)
 
-**Primary output:** [`demo/prior-output/TODO`](demo/prior-output/)
+## Show this — 30 seconds
 
-**Setup:** TODO — state `None` or give exact committed instructions. Never include secret values.
+**Result:** TODO what the output is and what a user does with it
 
-## Live capability — 60 seconds
+**Evidence:** TODO where the sources, retrieval dates, and confidence are visible in the output
 
-1. Open Codex at the repository root.
-2. Paste the exact Seed Prompt.
-3. TODO — describe the one meaningful state or artifact the jury should watch for.
-4. Stop or switch to the Prior Output if the step exceeds 60 seconds.
+**Fallback output was produced:** TODO date, time, and how
 
-## Result — 45 seconds
+## Evals — 10 seconds
 
-**What the output enables:** TODO
-
-**Evidence or provenance to show:** TODO
-
-**Prior Output fallback:** [`demo/prior-output/TODO`](demo/prior-output/)
-
-## Evaluation — 20 seconds
-
-| Case | Result | Evidence |
+| Case | Result | Where |
 | --- | --- | --- |
-| Intended | TODO | [`demo/evals/results.md`](demo/evals/results.md) |
-| Edge / insufficient evidence | TODO | [`demo/evals/results.md`](demo/evals/results.md) |
-| Failure / exclusion / safety | TODO | [`demo/evals/results.md`](demo/evals/results.md) |
+| Intended | TODO pass/fail in one clause | [`demo/evals.md`](demo/evals.md) |
+| Insufficient evidence | TODO | [`demo/evals.md`](demo/evals.md) |
+| Failure / exclusion | TODO | [`demo/evals.md`](demo/evals.md) |
 
 ## Close — 10 seconds
 
-**Reusable value:** TODO
+**Reusable on:** TODO what other inputs of the same kind this works on unchanged
 
-**Material limitation:** TODO
+**Material limitation:** TODO the honest one
