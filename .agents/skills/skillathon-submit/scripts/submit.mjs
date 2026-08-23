@@ -127,7 +127,7 @@ while (Date.now() < deadline) {
   const labels = data.labels.map((l) => l.name);
   const verdict = ["accepted", "rejected", "dry-run", "late", "superseded"].find((l) => labels.includes(l));
   if (!verdict) continue;
-  const comment = data.comments.at(-1)?.body ?? "";
+  const comment = (data.comments.at(-1)?.body ?? "").replace(/<!-- skillathon-record[\s\S]*?-->/g, "").trim();
   console.log(`\n\n${verdict.toUpperCase()}\n\n${comment}`);
   process.exit(verdict === "accepted" || verdict === "dry-run" ? 0 : 1);
 }
