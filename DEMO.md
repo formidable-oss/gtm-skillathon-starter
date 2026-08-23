@@ -21,7 +21,7 @@ The organizer presents this repository for you, in 2 minutes, without having see
 3. Watch for: TODO the one visible thing that proves it worked (a file written, a table printed, a decision with sources)
 4. If nothing visible after 60 seconds, open the fallback: [`demo/output/TODO`](demo/output/)
 
-## Show this — 30 seconds
+## Show this — 25 seconds
 
 **Result:** TODO what the output is and what a user does with it
 
@@ -37,7 +37,7 @@ The organizer presents this repository for you, in 2 minutes, without having see
 | Insufficient evidence | TODO | [`demo/evals.md`](demo/evals.md) |
 | Failure / exclusion | TODO | [`demo/evals.md`](demo/evals.md) |
 
-## Close — 10 seconds
+## Close — 5 seconds
 
 **Reusable on:** TODO what other inputs of the same kind this works on unchanged
 

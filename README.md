@@ -5,7 +5,7 @@ Build a reusable agent skill that solves one go-to-market problem with real-worl
 This file is written for agents first. If you are a participant, paste the prompt in [Start here](#start-here) into your agent and let it guide you.
 
 - Event: [Build with Codex: GTM Skillathon](https://luma.com/82q9aclg), 28 August 2026, Builders House, București
-- Rules, timeline, and judging: [`RULES.md`](RULES.md)
+- Rules, timeline, and judging: [`RULES.md`](RULES.md) — canonical
 - Build contract for your agent: [`AGENTS.md`](AGENTS.md)
 - Submissions and live board: <https://github.com/formidable-oss/gtm-skillathon-submissions>
 
@@ -20,22 +20,22 @@ This file is written for agents first. If you are a participant, paste the promp
 | 21:45 | Formidable Builders launch party |
 
 - Teams of 1–2 people. Build with any agent (Codex, Claude Code, Cursor, anything). The jury runs your submission in the **Codex desktop app**, so the judged path must work in Codex.
-- You submit a **public GitHub repository** created from this template plus a **commit SHA**. The organizer clones that exact commit, opens it in Codex, pastes your seed prompt, and presents it for you in 2 minutes. You do not present. Your repository is the presentation.
-- Submissions are GitHub issues in the submissions repository. Anything filed after 20:30 is rejected automatically. No exceptions, no extensions.
+- You submit a **public GitHub repository** created from this template plus a **commit SHA**. The organizer clones that exact commit, opens it in Codex, pastes your seed prompt, and presents it for you in 2 minutes.
+- Submissions are GitHub issues in the submissions repository. Anything filed at or after 20:30:00 is rejected automatically.
 
 ## Start here
 
 1. On GitHub, select **Use this template → Create a new repository**. Make it **public**.
-2. Clone it and open the repository root in your agent.
+2. Get it onto your laptop and open it in your agent. If you know git: `git clone <your-repo-url>`, then open the folder. If you do not: open your agent in any folder, paste your repository URL, and ask it to clone the repository and set up git for you (it needs `git`, a name and email for commits, and `gh auth login` so pushing works without passwords).
 3. Paste this prompt:
 
 ```text
-Read AGENTS.md and RULES.md. Use $skillathon-guide to explain how the GTM Skillathon works and how I will be judged, then help me choose one track, one narrow GTM job, one representative input, one success condition, and one boundary. Keep it small enough to build and test in two hours.
+Read AGENTS.md, RULES.md, and .agents/skills/skillathon-guide/SKILL.md, then follow that skill: explain how the GTM Skillathon works and how I will be judged, then help me choose one track, one user, one narrow GTM job, one representative input, one success condition, and one boundary. Keep it small enough to build, test, and submit in two and a half hours.
 ```
 
 4. Build your skill in `.agents/skills/<skill-name>/SKILL.md`. Test it on the representative input. Record what actually happened.
 5. Fill in `submission.json`, `DEMO.md`, and everything under `demo/`.
-6. Ask your agent to run `$skillathon-submit`. It validates the repository with the same checks the submission system uses, commits, and files the submission. Submit early; you can resubmit until 20:30 and the latest accepted submission wins.
+6. Ask your agent to run `$skillathon-submit` (path: `.agents/skills/skillathon-submit/SKILL.md`). It runs the same structure and safety checks the submission system runs, commits, pushes, and files the submission. Submit early; you can resubmit until 20:30 and the latest accepted submission counts.
 
 ## What you must deliver
 
@@ -44,9 +44,9 @@ Everything the jury needs is inside your repository at the submitted commit:
 | Artifact | Path | Purpose |
 | --- | --- | --- |
 | Entry skill | `.agents/skills/<skill-name>/SKILL.md` | The one skill the seed prompt invokes. Other skills may support it. |
-| Seed prompt | `demo/seed-prompt.md` | The exact prompt the organizer pastes into Codex. Must invoke `$<skill-name>` and name the input. |
-| Representative input | `demo/input/` | The smallest input that shows the job. Public data only, with source URL and retrieval date. |
-| Fallback output | `demo/output/` | A genuine result your skill produced during the event. Shown if the live run stalls. |
+| Seed prompt | `demo/seed-prompt.md` | The exact prompt the organizer pastes into Codex. Must invoke `$<skill-name>` and name the input path. |
+| Representative input | `demo/input/<file-or-folder>` | The smallest input that shows the job. Public data only, with source URL and retrieval date. |
+| Fallback output | `demo/output/<file-or-folder>` | A genuine result your skill produced during the event. Shown if the live run stalls. |
 | Evaluations | `demo/evals.md` | Three cases — intended, insufficient evidence, failure/exclusion — with observed results. |
 | Run sheet | `DEMO.md` | What the organizer says and shows during your 2 minutes. |
 | Manifest | `submission.json` | Paths to all of the above, team, track, problem. |

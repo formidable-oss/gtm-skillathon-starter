@@ -19,7 +19,7 @@ A company name or website URL, given in the prompt or in a file the prompt names
 1. Resolve the company website. If it cannot be resolved, report "insufficient evidence: company not found" and stop.
 2. Fetch the homepage, the pricing or product page, the careers page, and the two most recent news or blog items. Record each URL and the retrieval date.
 3. Extract up to five signals, each as `claim / source URL / retrieved date / confidence (high, medium, low) and why`.
-4. Write `output/<company-slug>-brief.md` with: company one-liner, the signal table, three suggested talking points, and a "What I could not verify" section.
+4. Write `demo/output/<company-slug>-brief.md` (or the path the prompt names) with: company one-liner, the signal table, three suggested talking points, and a "What I could not verify" section.
 5. Print the path and the signal table.
 
 ## Rules
@@ -34,4 +34,4 @@ A company name or website URL, given in the prompt or in a file the prompt names
 The brief file exists, every claim has a source and date, and the "could not verify" section is filled or explicitly empty.
 ```
 
-Keep the whole file under about 80 lines. Add `scripts/` or `references/` only for something a step genuinely needs.
+Keep the whole file under about 80 lines. Frontmatter is `key: value` lines; a multi-line `description: >` block is accepted but keep it short. Add `scripts/` or `references/` only for something a step genuinely needs.

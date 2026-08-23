@@ -22,7 +22,9 @@ const TRACKS = [
   "custom",
 ];
 const ORGANIZER_SKILLS = new Set(["skillathon-guide", "skillathon-submit"]);
-const PLACEHOLDER = /\bTODO\b/;
+// Template placeholders: TODO at the start of a value (after **label**, a colon, a table pipe, a
+// JSON quote, a $ or a path separator, or at line start). Plain prose such as "TODO items" passes.
+const PLACEHOLDER = /(?:\*\*\s*|:\s*|\|\s*|"\s*|\$|\/|^\s*)TODO\b/m;
 const SKILL_PATH = /^\.agents\/skills\/([a-z0-9]+(?:-[a-z0-9]+)*)\/SKILL\.md$/;
 const SECRET_PATTERNS = [
   ["OpenAI key", /\bsk-(?:proj-)?[A-Za-z0-9_-]{20,}\b/],
@@ -34,6 +36,7 @@ const SECRET_PATTERNS = [
   ["Private key", /-----BEGIN [A-Z ]*PRIVATE KEY-----/],
   ["Credential URL", /\b[a-z]+:\/\/[^\s/:@]+:[^\s/@]+@[^\s]+/i],
 ];
+const PLACEHOLDER_SECRET = /x{6,}|your[-_ ]|example|changeme|placeholder|localhost|127\.0\.0\.1|<[^>]+>/i;
 const MAX_DATA_BYTES = 25 * 1024 * 1024;
 
 const args = process.argv.slice(2);
@@ -157,9 +160,9 @@ if (manifest) {
     if (summary.entry_skill && !text.includes(`$${summary.entry_skill}`)) {
       err("seed-no-entry", `seed prompt must invoke the entry skill as $${summary.entry_skill}`, seed);
     }
-    const input = manifest.input;
-    if (nonEmptyString(input) && !(text.includes(input) || text.includes(basename(input)))) {
-      err("seed-no-input", `seed prompt must name the input (${input})`, seed);
+    const input = nonEmptyString(manifest.input) ? manifest.input.replace(/\/+$/, "") : "";
+    if (input && !(text.includes(input) || (!isDir(input) && text.includes(basename(input))))) {
+      err("seed-no-input", `seed prompt must name the input path (${input})`, seed);
     }
   }
 
@@ -176,7 +179,8 @@ if (manifest) {
     for (const label of ["Intended", "Insufficient evidence", "Failure"]) {
       if (!text.includes(label)) err("evals-case", `evals must contain the "${label}" case`, evals);
     }
-    if (!/\b(pass|fail)\b/i.test(text)) err("evals-judgment", "each eval case needs a pass or fail judgment", evals);
+    const judged = (text.match(/\|\s*(pass|fail)\s*\|/gi) ?? []).length;
+    if (judged < 3) err("evals-judgment", `each of the three eval cases needs a pass or fail cell (found ${judged})`, evals);
   }
 
   // Run sheet
@@ -204,11 +208,14 @@ function parseFrontmatter(text, path) {
   const m = /^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/.exec(text);
   if (!m) { err("frontmatter-missing", "SKILL.md must start with YAML frontmatter", path); return null; }
   const fields = {};
+  let last = null;
   for (const line of m[1].split(/\r?\n/)) {
     if (!line.trim()) continue;
+    if (/^\s/.test(line) && last) { fields[last] = `${fields[last]} ${line.trim()}`.trim(); continue; } // YAML continuation line
     const kv = /^([A-Za-z_][\w-]*):\s*(.*)$/.exec(line);
-    if (!kv) { err("frontmatter-invalid", `cannot parse frontmatter line: ${line.slice(0, 40)}`, path); return null; }
-    fields[kv[1]] = kv[2].trim().replace(/^(['"])(.*)\1$/, "$2");
+    if (!kv) { err("frontmatter-invalid", `cannot parse frontmatter line "${line.slice(0, 40)}"; use "key: value" lines`, path); return null; }
+    last = kv[1];
+    fields[last] = kv[2].trim().replace(/^[>|][-+]?$/, "").replace(/^(['"])(.*)\1$/, "$2");
   }
   const keys = Object.keys(fields);
   const extra = keys.filter((k) => k !== "name" && k !== "description");
@@ -231,10 +238,11 @@ for (const file of tracked) {
   if (size > 1024 * 1024 || /\.(png|jpe?g|gif|webp|pdf|zip|gz|mp4|mov|woff2?|ttf|ico)$/i.test(name)) continue;
   let text;
   try { text = readFileSync(abs(file), "utf8"); } catch { continue; }
+  if (/\.example$|\.sample$/i.test(name)) continue;
   const lines = text.split("\n");
   for (const [label, re] of SECRET_PATTERNS) {
     for (let i = 0; i < lines.length; i++) {
-      if (re.test(lines[i])) { err("secret", `possible ${label} at line ${i + 1}; remove it and rotate the credential`, file); break; }
+      if (re.test(lines[i]) && !PLACEHOLDER_SECRET.test(lines[i])) { err("secret", `possible ${label} at line ${i + 1}; remove it and rotate the credential`, file); break; }
     }
   }
 }

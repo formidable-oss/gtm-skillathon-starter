@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 // Files a GTM Skillathon submission for the repository in the current directory.
 //
-// Usage: node submit.mjs [--dry-run] [--no-wait]
-//   --dry-run  validate and print what would be submitted; do not file an issue
+// Usage: node submit.mjs [--check] [--no-wait]
+//   --check    validate and print what would be submitted; do not file an issue
 //   --no-wait  file the issue and exit without waiting for the verdict
 //
 // Refuses when validation fails, the working tree is dirty, HEAD is not pushed, the remote
@@ -19,7 +19,7 @@ const CLOSE_AT = Date.parse("2026-08-28T17:30:00Z"); // 20:30 Europe/Bucharest
 const HERE = dirname(fileURLToPath(import.meta.url));
 
 const flags = new Set(process.argv.slice(2));
-const dryRun = flags.has("--dry-run");
+const dryRun = flags.has("--check") || flags.has("--dry-run");
 const wait = !flags.has("--no-wait");
 
 const sh = (cmd, args, opts = {}) => {
@@ -47,7 +47,7 @@ if (!sh("git", ["rev-parse", "--is-inside-work-tree"]).ok) fail("not a git repos
 if (sh("git", ["status", "--porcelain"]).out) fail("working tree has uncommitted changes. Commit everything first (git add -A && git commit), then run again.");
 const sha = sh("git", ["rev-parse", "HEAD"]).out;
 const remoteUrl = sh("git", ["remote", "get-url", "origin"]).out;
-const m = /github\.com[:/]([^/]+)\/([^/.]+)(?:\.git)?$/.exec(remoteUrl);
+const m = /github\.com[:/]([^/]+)\/(.+?)(?:\.git)?\/?$/.exec(remoteUrl);
 if (!m) fail(`origin is not a GitHub repository (${remoteUrl || "no origin"}).`);
 const repo = `${m[1]}/${m[2]}`;
 const repoUrl = `https://github.com/${repo}`;
@@ -91,7 +91,7 @@ console.log(`Entry skill $${entry_skill}`);
 console.log(`Repository  ${repoUrl}`);
 console.log(`Commit      ${sha}`);
 if (early) console.log("NOTE        before 18:00 local time: this will be recorded as a dry run, not a submission.");
-if (dryRun) { console.log("\nDry run: no issue filed."); process.exit(0); }
+if (dryRun) { console.log("\nCheck only: no issue filed."); process.exit(0); }
 
 // 6. File it
 const formUrl = `https://github.com/${SUBMISSIONS_REPO}/issues/new?template=submission.yml` +

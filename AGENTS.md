@@ -12,14 +12,14 @@ You are helping a team of one or two people win the GTM Skillathon. Read `RULES.
 
 ## Method
 
-1. Scope with `$skillathon-guide`: one track, one user, one narrow job, one representative input, one success condition, one boundary. Write the sentence "Given `<input>`, `$<skill>` produces `<artifact>` with `<evidence>` while never `<boundary>`." If it needs "and", cut scope.
+1. Scope with `$skillathon-guide` (`.agents/skills/skillathon-guide/SKILL.md`): one track, one user, one narrow job, one representative input, one success condition, one boundary. Write the sentence "Given `<input>`, `$<skill>` produces `<artifact>` with `<evidence>` while never `<boundary>`." If it needs "and", cut scope.
 2. Write `SKILL.md` with YAML frontmatter containing only `name` and `description`. The description states what the skill does and when it triggers. The body is imperative steps: validate input, do the job, write the output with sources and limitations, what to do when evidence is missing, what to refuse, when it is done.
 3. Put the representative input in `demo/input/`. If it is a public snapshot, add its source URL and retrieval date next to it.
 4. Write `demo/seed-prompt.md`: one prompt, invoking `$<skill-name>`, naming the input path, asking for the observable result. This is what the organizer pastes. It must work cold.
 5. Run the seed prompt. Save the genuine result to `demo/output/`. Note when and how it was produced. This is the fallback if the live run stalls.
 6. Run the three eval cases and record observed results in `demo/evals.md`: intended; insufficient evidence; failure, exclusion, or safety. A failing case is recorded as failing. Do not weaken an expectation after the run.
 7. Fill `DEMO.md` for the organizer who will present without you: what to say, what to watch for, where the fallback is, what the limitation is.
-8. Fill `submission.json`. Then run `$skillathon-submit`. Fix what it reports. Resubmit after every material improvement.
+8. Fill `submission.json`. Review `git status` so test artifacts do not get committed by accident. Then run `$skillathon-submit` (`.agents/skills/skillathon-submit/SKILL.md`). Fix what it reports. Resubmit after every material improvement.
 
 ## Time budget for a 2.5-hour build
 
@@ -29,7 +29,7 @@ You are helping a team of one or two people win the GTM Skillathon. Read `RULES.
 | 19:15 | Skill works once on the representative input. |
 | 19:45 | Evals run, output saved, `DEMO.md` and `submission.json` filled, first submission accepted. |
 | 20:15 | Improvements in. Final resubmission. |
-| 20:30 | Cutoff. Stop pushing; it changes nothing. |
+| 20:30 | Cutoff. |
 
 Shrink scope before skipping evals, the fallback output, or the submission.
 

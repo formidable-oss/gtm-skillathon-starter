@@ -28,7 +28,13 @@ Short answers. `RULES.md` wins on any conflict.
 
 **What counts as real-world web data?** Anything publicly fetchable: company sites, job boards, app stores, docs, pricing pages, public social posts, review sites, search results. Snapshot it into `demo/input/` with source URL and retrieval date if the live fetch is slow or flaky.
 
-**What is not allowed as data?** Registration emails, LinkedIn exports, scraped personal profiles, anything under NDA, anything you may not redistribute.
+**What is not allowed as data?** Registration emails, LinkedIn exports, scraped personal profiles, anything under NDA, anything you may not redistribute. Public figures acting in their public role are fine: a CEO quoted in a press release, a founder named on an About page. Private individuals' contact details, profiles, or lists are not. Your own names in `submission.json` are fine.
+
+**Can the live run fetch the web?** Yes. The jury laptop has internet and Codex may fetch public URLs; it has no API keys or MCP servers. If a fetch is slow or flaky, commit a snapshot in `demo/input/` with source and retrieval date and make the skill use it.
+
+**Can my skill use scripts? In which language?** Yes: Node 24 and Python 3 exist on the jury laptop, nothing gets installed before your run, so scripts must be dependency-free. Markdown-only skills are fine and usually enough.
+
+**Where should the live run write?** Anywhere in the repository; `demo/output/` is the convention. `demo/output/` must already contain your fallback at submission time. Check `git status` before committing so test artifacts do not get swept in.
 
 **What do the three eval cases mean?** Intended: the normal input works. Insufficient evidence: missing or ambiguous data produces visible uncertainty or abstention, not a confident guess. Failure/exclusion/safety: the skill refuses or stops at a draft when it should. Record what actually happened.
 
@@ -41,3 +47,5 @@ Short answers. `RULES.md` wins on any conflict.
 **How big can the repository be?** Keep data under 25 MB. Large files slow the clone in front of the jury.
 
 **What if validation fails at 20:25?** Fix the reported items and resubmit. The issue timestamp must be before 20:30:00. If you cannot fix in time, resubmit the last version that passed.
+
+**What do the verdicts mean?** `accepted`: in, this commit is judged. `rejected`: fix the listed items and resubmit. `dry-run`: filed before 18:00; the pipeline works but it is not a submission. `superseded`: a newer submission from the same repository replaced it. `late`: filed at or after 20:30:00; not accepted.

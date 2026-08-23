@@ -10,7 +10,6 @@ Three cases, run against the submitted commit. Write the expectation before runn
 
 ## Run context
 
-- **Commit:** TODO
 - **Agent:** TODO which agent and version ran the cases
 - **When:** TODO date and time
 - **Baseline without the skill:** TODO optional; what the same agent produced from the seed prompt without the skill, or `Not run`
