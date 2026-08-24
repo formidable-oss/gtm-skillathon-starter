@@ -14,8 +14,18 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const SUBMISSIONS_REPO = "formidable-oss/gtm-skillathon-submissions";
-const OPEN_AT = Date.parse("2026-08-28T15:00:00Z"); // 18:00 Europe/Bucharest
-const CLOSE_AT = Date.parse("2026-08-28T17:30:00Z"); // 20:30 Europe/Bucharest
+// Fallback window; the live window comes from the submission system's board.json,
+// which organizers can adjust during the event. The server check is authoritative either way.
+let OPEN_AT = Date.parse("2026-08-28T15:00:00Z"); // 18:00 Europe/Bucharest
+let CLOSE_AT = Date.parse("2026-08-28T17:30:00Z"); // 20:30 Europe/Bucharest
+try {
+  const res = await fetch(`https://raw.githubusercontent.com/${SUBMISSIONS_REPO}/main/board.json?t=${Date.now()}`, { signal: AbortSignal.timeout(4000) });
+  if (res.ok) {
+    const board = await res.json();
+    if (board.open_at) OPEN_AT = Date.parse(board.open_at);
+    if (board.close_at) CLOSE_AT = Date.parse(board.close_at);
+  }
+} catch { /* offline: keep fallbacks; the server still decides */ }
 const HERE = dirname(fileURLToPath(import.meta.url));
 
 const flags = new Set(process.argv.slice(2));
