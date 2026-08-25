@@ -44,6 +44,8 @@ Short answers. `RULES.md` wins on any conflict.
 
 **Private repository?** Not allowed. The repository must be public at submission time and through the demos.
 
+**What happens to my skill after the event?** It is forked into the Formidable Builders GitHub organization (<https://github.com/formidable-oss>) and stays public there under MIT. Submitting is consent to this. Do not include anything you are not willing to publish.
+
 **How big can the repository be?** Keep data under 25 MB. Large files slow the clone in front of the jury.
 
 **What if validation fails at 20:25?** Fix the reported items and resubmit. The issue timestamp must be before 20:30:00. If you cannot fix in time, resubmit the last version that passed.

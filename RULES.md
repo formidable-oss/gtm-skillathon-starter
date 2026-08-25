@@ -44,6 +44,7 @@ Breaking any of these disqualifies the submission.
 3. No fabricated evidence. Eval results, fallback output, sources, and retrieval dates must be genuine.
 4. Only data you may redistribute. Public snapshots carry a source URL and retrieval date.
 5. The repository is public at submission time and stays public through the demos.
+6. Submitted skills are forked into the Formidable Builders GitHub organization (<https://github.com/formidable-oss>) and remain public there under MIT after the event. Submitting is consent to this; do not submit anything you are not willing to publish.
 
 ## Judging
 

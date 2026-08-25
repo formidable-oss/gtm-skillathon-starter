@@ -22,6 +22,7 @@ This file is written for agents first. If you are a participant, paste the promp
 - Teams of 1–2 people. Build with any agent (Codex, Claude Code, Cursor, anything). The jury runs your submission in the **Codex desktop app**, so the judged path must work in Codex.
 - You submit a **public GitHub repository** created from this template plus a **commit SHA**. The organizer clones that exact commit, opens it in Codex, pastes your seed prompt, and presents it for you in 2 minutes.
 - Submissions are GitHub issues in the submissions repository. Anything filed at or after 20:30:00 is rejected automatically.
+- **Your skill stays public.** After the event, submitted skills are forked into the Formidable Builders GitHub organization (<https://github.com/formidable-oss>) and remain publicly available under the MIT licence. Do not submit anything you are not willing to publish.
 
 ## Start here
 
@@ -62,4 +63,4 @@ Two skills ship with this template and are ignored by judging. Do not list them 
 
 ## Licence
 
-MIT. Keep `LICENSE` as is.
+MIT. Keep `LICENSE` as is. By submitting, you agree that your repository is forked into the Formidable Builders GitHub organization and stays public there under this licence.

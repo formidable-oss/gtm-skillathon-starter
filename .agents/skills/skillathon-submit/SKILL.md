@@ -5,7 +5,7 @@ description: Validates a GTM Skillathon repository against the submission checks
 
 # Submit
 
-Files the team's submission to <https://github.com/formidable-oss/gtm-skillathon-submissions>. The submission is the public repository URL plus the commit SHA of `HEAD`. Resubmitting before 20:30 replaces the earlier submission.
+Files the team's submission to <https://github.com/formidable-oss/gtm-skillathon-submissions>. The submission is the public repository URL plus the commit SHA of `HEAD`. Resubmitting before 20:30 replaces the earlier submission. Submitting is consent to the repository being forked into the Formidable Builders GitHub organization and staying public there under MIT; say this to the team before filing.
 
 ## Steps
 
