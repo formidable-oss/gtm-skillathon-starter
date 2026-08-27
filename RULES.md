@@ -58,6 +58,7 @@ Checked by the organizer tooling from the submitted commit. Fail any gate and th
 | Valid structure | `submission.json` parses; every declared path resolves and is committed; one entry skill, listed in `skills`, with valid frontmatter; seed prompt invokes it as `$<skill-name>` and names the input path; evals have three cases with pass/fail cells; no template placeholders left. Exactly what `$skillathon-submit` checks |
 | Runs | The seed prompt completes in Codex from a fresh clone within 75 seconds (the organizer switches to the fallback at about 60 seconds on stage) and produces what `DEMO.md` promises. A timeout with a genuine fallback output is a pass with a warning |
 | Clean | No secrets, no personal data, no credentials needed to run |
+| Honest | No text addressed to the judge, jury, or scoring model, no hidden content, and no evidence that contradicts the repository. The organizer decides on the scanner's and Codex's findings |
 
 ### Automated scores
 
@@ -73,7 +74,7 @@ Proposed by Codex from the repository, 1–5 each with a one-line rationale. The
 
 ### Jury scores
 
-Filled by the jury during the demo, 1–5 each.
+Each jury member scores 1–5 during the demo; the criterion score is the jury average, to one decimal.
 
 | Criterion | What it rewards |
 | --- | --- |
